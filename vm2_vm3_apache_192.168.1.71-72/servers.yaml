@@ -1,0 +1,10 @@
+- name: vm2-be01
+  box: generic/ubuntu2204
+  ram: 1024
+  ip: 192.168.1.71
+  script: "app-install-vm2-be01.sh"
+- name: vm3-be02
+  box: generic/ubuntu2204
+  ram: 1024
+  ip: 192.168.1.72
+  script: "app-install-vm3-be02.sh"

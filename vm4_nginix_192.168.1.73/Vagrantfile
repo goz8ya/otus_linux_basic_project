@@ -6,7 +6,7 @@
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
 Vagrant.configure("2") do |config|
-config.vm.hostname = 'VM1-Prometheus'
+config.vm.hostname = 'VM4-Nginx'
   # The most common configuration options are documented and commented below.
   # For a complete reference, please see the online documentation at
   # https://docs.vagrantup.com.
@@ -37,7 +37,7 @@ config.vm.hostname = 'VM1-Prometheus'
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
   # your network.
-   config.vm.network "public_network", ip: "192.168.1.70"
+   config.vm.network "public_network", ip: "192.168.1.73"
 
   # Share an additional folder to the guest VM. The first argument is
   # the path on the host to the actual folder. The second argument is
@@ -54,9 +54,9 @@ config.vm.hostname = 'VM1-Prometheus'
     # vb.gui = true
   
     # Customize the amount of memory on the VM:
-    vb.memory = "2028"
-    vb.cpus = 2
-    vb.name = "VM1-Prometheus"
+    vb.memory = "1024"
+    vb.cpus = 1
+    vb.name = "VM4-Nginx"
   end
   #
   # View the documentation for the provider you are using for more

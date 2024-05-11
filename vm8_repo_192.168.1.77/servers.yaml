@@ -1,0 +1,5 @@
+- name: vm8-repo   
+  box: "generic/ubuntu2204"
+  ram: 2048
+  ip: 192.168.1.77
+  script: "./.scripts/apps-install-vm8-repo.sh"

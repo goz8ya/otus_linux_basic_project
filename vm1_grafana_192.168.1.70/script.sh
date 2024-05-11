@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-#sudo apt-get update
-
+sudo apt-get update
+sudo timedatectl set-timezone 'Europe/Moscow'
 # Создаем директории для хранения скачаных файлов
 mkdir /home/vagrant/Downloads
 cd /home/vagrant/Downloads
@@ -116,7 +116,14 @@ scrape_configs:
   - job_name: 'node_exporter'
     scrape_interval: 5s
     static_configs:
-      - targets: ['localhost:9100']
+      - targets: 
+        - '192.168.1.74:9100' # mysql-source
+        - '192.168.1.75:9100' # mysql-replica
+        - '192.168.1.71:9100' # web-app-nd1
+        - '192.168.1.72:9100' # web-app-nd2
+        - '192.168.1.73:9100' # nginx reverse proxy
+        - 'localhost:9100'    # 192.168.1.70:9100 - prometheus itself
+        - '192.168.1.76:9100' # elk stack
 ###############################################################
 EOF
 
@@ -177,6 +184,7 @@ chown grafana: /var/lib/grafana/grafana.db
 
 # Запуск
 systemctl daemon-reload
+systemctl enable grafana-server
 systemctl start grafana-server
 systemctl status grafana-server
 

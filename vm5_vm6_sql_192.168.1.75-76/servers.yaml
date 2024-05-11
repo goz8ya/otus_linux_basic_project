@@ -1,0 +1,10 @@
+- name: vm5-sql-master   
+  box: "generic/ubuntu2204"
+  ram: 2048
+  ip: 192.168.1.74
+  script: "./.scripts/apps-install-vm5-sql-master.sh"
+- name: vm6-sql-slave  
+  box: "generic/ubuntu2204"
+  ram: 2048
+  ip: 192.168.1.75
+  script: "./.scripts/apps-install-vm6-sql-slave.sh"

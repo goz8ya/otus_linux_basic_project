@@ -1,0 +1,6 @@
+- name: vm7-elk
+  box: "generic/ubuntu2204"
+  ram: 2048
+  ip: 192.168.1.76
+  script: "./.scripts/apps-install-vm7-ELK.sh"
+
