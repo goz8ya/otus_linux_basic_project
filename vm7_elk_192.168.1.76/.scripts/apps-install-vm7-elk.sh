@@ -165,7 +165,9 @@ systemctl restart logstash.service
 
 
 # Установка filebeat
-#dpkg -i filebeat-8.13.4-amd64.deb 
+dpkg -i filebeat-8.13.4-amd64.deb 
+
+
 
 #sudo cp /etc/filebeat/filebeat.yml /etc/filebeat/filebeat.yml.bcp
 
@@ -224,3 +226,4 @@ apt-get -yq install prometheus-node-exporter
 systemctl enable prometheus-node-exporter
 systemctl start prometheus-node-exporter
 
+sudo filebeat setup --dashboards

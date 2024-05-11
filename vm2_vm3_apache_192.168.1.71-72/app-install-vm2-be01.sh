@@ -32,8 +32,11 @@ setup.template.settings:
   index.number_of_shards: 1
 tags: ["web", "apache"]
 #setup.kibana:
-output.logstash:
-  hosts: ["192.168.1.76:5400"]
+output.elasticsearch:
+  hosts: ["192.168.1.76:9200"]
+  preset: balanced
+#output.logstash:
+#  hosts: ["192.168.1.76:5400"]
 processors:
   - add_host_metadata:
       when.not.contains.tags: forwarded
