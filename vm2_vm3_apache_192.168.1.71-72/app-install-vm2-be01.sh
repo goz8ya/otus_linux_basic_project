@@ -30,7 +30,7 @@ filebeat.config.modules:
   reload.period: 30s
 setup.template.settings:
   index.number_of_shards: 1
-tags: ["web", "apache"]
+tags: ["apache", "vm2"]
 #setup.kibana:
 output.elasticsearch:
   hosts: ["192.168.1.76:9200"]

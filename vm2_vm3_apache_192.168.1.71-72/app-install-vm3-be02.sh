@@ -30,7 +30,7 @@ filebeat.config.modules:
   reload.period: 30s
 setup.template.settings:
   index.number_of_shards: 1
-tags: ["web", "apache"]
+tags: ["apache", "vm3"]
 #setup.kibana:
 output.elasticsearch:
   hosts: ["192.168.1.76:9200"]
@@ -70,6 +70,9 @@ cat <<'EOF' > /etc/filebeat/modules.d/apache.yml
 
 ############################################
 EOF
+
+systemctl enable filebeat
+systemctl start filebeat
 
 # Install and run prometheus node exporter
 apt-get -yq install prometheus-node-exporter

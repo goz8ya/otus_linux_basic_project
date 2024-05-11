@@ -55,6 +55,7 @@ dpkg -i filebeat-8.13.4-amd64.deb
 sudo filebeat modules enable nginx
 sudo cp /etc/filebeat/filebeat.yml /etc/filebeat/filebeat.yml.bcp
 
+
 # filebeat конфиг резерв
 cat <<'EOF' > /etc/filebeat/filebeat.yml_bcp
 ###########################################
@@ -144,7 +145,6 @@ cat <<'EOF' > /etc/filebeat/modules.d/nginx.yml
 ############################################
 EOF
 
-systemctl enable filebeat
-systemctl start filebeat
+sudo systemctl enable filebeat
+sudo systemctl start filebeat
 
-sudo filebeat modules enable nginx
