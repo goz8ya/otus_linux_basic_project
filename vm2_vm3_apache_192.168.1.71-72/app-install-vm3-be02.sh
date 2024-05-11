@@ -6,7 +6,7 @@ sudo apt install apache2 -y
 sudo systemctl enable apache2
 sudo systemctl start apache2
 sudo systemctl status apache2
-sudo sed -i 's/Apache2 Default Page/VM3-BE02 Test Page/' /var/www/html/index.html
+sudo sed -i 's/Apache2 Default Page/VM3-BE02 192.168.1.72/' /var/www/html/index.html
 
 
 wget http://192.168.1.77/filebeat-8.13.4-amd64.deb
