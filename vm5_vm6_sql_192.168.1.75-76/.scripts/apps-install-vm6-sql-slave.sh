@@ -52,6 +52,7 @@ mysql -h localhost -u root -p'Testpass1$' -e "START REPLICA;";
 mysql -h localhost -u root  -p'Testpass1$' -e "show replica status\G;";
 
 
+
 #show replica status\G
 ## mysql -h localhost -u root -p'Testpass1$' -e "show databases;";
 
@@ -60,5 +61,46 @@ mysql -h localhost -u root  -p'Testpass1$' -e "show replica status\G;";
 apt-get -yq install prometheus-node-exporter
 systemctl enable prometheus-node-exporter
 systemctl start prometheus-node-exporter
+
+
+# Скрипт бекапа потаблично
+sudo mkdir -p /home/vagrant/backup
+cat <<'EOF' > /home/vagrant/backup/backup-mysql.sh
+#!/bin/bash
+
+# Mysql backup scriptckup script
+
+PATH=$PATH:/usr/local/bin
+DIR=$(date +"%Y-%m-%d");
+DATE=$(date +"%Y%m%d");
+MYSQL="mysql -h localhost -u root -p'Testpass1$' --skip-column-names";
+#echo   $($MYSQL -N -e "SHOW DATABASES;");
+
+echo "=============================================="
+for DB in $(mysql -h localhost -u root -p'Testpass1$' --skip-column-names -N -e "SHOW DATABASES;"); do
+echo "=============================================="
+        echo -e "BACKUP DATABASE: $DB\n"
+ echo "-----------------------"
+ if [ -d "$DIR"_"$DB" ]
+        then
+            echo "введеная директория "$DIR"_"$DB" существует, продолжаем работу программы"
+        else
+         mkdir "$DIR"_"$DB"
+fi
+ for TABLES in $(mysql -h localhost -u root -p'Testpass1$' --skip-column-names -N -e "SHOW TABLES FROM $DB;"); do
+
+
+         echo -e "BACKUP TABLES FROM "$DB" "$TABLES""
+#  echo -e "SHOW $TABLES FROM $DB"
+  /usr/bin/mysqldump -u root -p'Testpass1$' --add-drop-table --add-locks --create-options --disable-keys --extended-insert --single-transaction --quick --set-charset --events --routines --triggers  "$DB" "$TABLES" > "$DIR"_"$DB"/$TABLES.sql 2>/dev/null
+ done
+done
+echo "=============================================="
+
+exit 0
+EOF
+
+# выполнение бекапа
+sudo bash /home/vagrant/backup/backup-mysql.sh
 
 mysql -h localhost -u root  -p'Testpass1$' -e "show replica status\G;";
